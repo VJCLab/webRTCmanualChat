@@ -1,13 +1,26 @@
 import EventEmitter from "../event-emitter.js";
 
 import FManager from "../fileManager/index.js";
-
+const DEMOStunServers = [
+            { urls: "stun:stun.l.google.com:19302" },
+            { urls: "stun:stun.l.google.com:5349" },
+            { urls: "stun:stun1.l.google.com:3478" },
+            { urls: "stun:stun1.l.google.com:5349" },
+            { urls: "stun:stun2.l.google.com:19302" },
+            { urls: "stun:stun2.l.google.com:5349" },
+            { urls: "stun:stun3.l.google.com:3478" },
+            { urls: "stun:stun3.l.google.com:5349" },
+            { urls: "stun:stun4.l.google.com:19302" },
+            { urls: "stun:stun4.l.google.com:5349" }
+        ]
 class RTCTele extends EventEmitter {
     constructor({
         onSystemMsg = () => { }
     }) {
         super();
-        const p = this.PEERCONNECTION = new RTCPeerConnection();
+        const p = this.PEERCONNECTION = new RTCPeerConnection({
+            iceServers: DEMOStunServers
+        });
         this.ICES = [];
         this.fileManager = new FManager();
         this.fileManager.initialize(this);
@@ -127,7 +140,7 @@ class RTCTele extends EventEmitter {
         [offerRemoteDescElm, answerRemoteDescElm].forEach(e => e.classList.remove("is-invalid"));
         if (!a || a === "") {
             // throw new RTCTele.RemoteDescEmptyError("remote description is empty", isOffer);
-            
+
             if (isOffer) {
                 offerRemoteDescElm.classList.add("is-invalid");
             } else
