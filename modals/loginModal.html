@@ -1,0 +1,260 @@
+<section
+	id="rtcLogin-modal"
+	class="modal"
+	data-bs-backdrop="static"
+	data-bs-keyboard="false"
+	tabindex="-1"
+	aria-labelledby="RTCLoginModalTitle"
+>
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header p-2">
+				<h5 class="modal-title" id="RTCLoginModalTitle">RTC 로그인</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Close"
+					onclick="this.blur(); return false;"
+				></button>
+			</div>
+			<div class="modal-body">
+				<div class="col">
+					<div class="input-group mb-3">
+						<span class="input-group-text" id="loginIDLabel"
+							>상대에게 표시될 이름</span
+						>
+						<input
+							id="loginID-modal"
+							type="text"
+							class="form-control"
+							placeholder="상대"
+							title="상대에게 표시될 이름"
+							aria-label="상대에게 표시될 이름"
+							aria-describedby="loginIDLabel"
+                            spellcheck="false"
+						/>
+					</div>
+				</div>
+				<div class="col">
+					<!-- Nav tabs -->
+					<ul
+						class="nav nav-tabs mb-3"
+						id="selectRemoteSideTabs"
+						role="tablist"
+					>
+						<li class="nav-item">
+							<button
+								class="nav-link active"
+								id="offer-tab"
+								data-bs-toggle="tab"
+								data-bs-target="#offerTab"
+								type="button"
+								role="tab"
+							>
+								🔵 송신 측 (A)
+							</button>
+						</li>
+						<li class="nav-item">
+							<button
+								class="nav-link"
+								id="answer-tab"
+								data-bs-toggle="tab"
+								data-bs-target="#answerTab"
+								type="button"
+								role="tab"
+							>
+								🟢 수신 측 (B)
+							</button>
+						</li>
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<!-- Offer 탭 -->
+						<div
+							class="tab-pane fade show active"
+							id="offerTab"
+							role="tabpanel"
+						>
+							<div class="mb-3">
+								<button
+									class="btn btn-outline-primary me-2"
+									id="createOffer"
+								>
+									1. Offer 생성
+								</button>
+							</div>
+
+							<div class="mb-3">
+								<label class="form-label" for="offer"
+									>📤 내 Offer</label
+								>
+								<textarea
+									id="offer"
+									class="form-control"
+									rows="5"
+									spellcheck="false"
+									readonly
+								></textarea>
+							</div>
+							<div class="mb-3 has-validation">
+								<div
+									class="d-flex justify-content-between align-items-center mb-1"
+								>
+									<label
+										class="form-label"
+										for="remoteDescOffer"
+										>📥 상대 Answer 입력</label
+									>
+									<button
+										class="btn btn-secondary mt-2"
+										id="setRemoteDescription"
+									>
+										2. 상대 Answer 적용
+									</button>
+								</div>
+								<textarea
+									id="remoteDescOffer"
+									class="form-control"
+									rows="5"
+									spellcheck="false"
+								></textarea>
+								<div class="invalid-feedback">
+									상대의 Answer를 입력해 줘
+								</div>
+							</div>
+						</div>
+
+						<!-- Answer 탭 -->
+						<div
+							class="tab-pane fade"
+							id="answerTab"
+							role="tabpanel"
+						>
+							<div class="mb-3">
+								<button
+									class="btn btn-outline-success"
+									id="createAnswer"
+									disabled
+								>
+									2. Answer 생성
+								</button>
+							</div>
+
+							<div class="mb-3">
+								<label class="form-label" for="answer"
+									>📤 내 Answer</label
+								>
+								<textarea
+									id="answer"
+									class="form-control"
+									rows="5"
+									spellcheck="false"
+									readonly
+								></textarea>
+							</div>
+
+							<div class="mb-3 has-validation">
+								<div
+									class="d-flex justify-content-between align-items-center mb-1"
+								>
+									<label
+										class="form-label"
+										for="remoteDescAnswer"
+										>📥 상대 Offer 입력</label
+									>
+									<button
+										class="btn btn-secondary mt-2"
+										id="setRemoteDescription"
+									>
+										1. 상대 Offer 적용
+									</button>
+								</div>
+								<textarea
+									id="remoteDescAnswer"
+									class="form-control"
+									rows="5"
+									spellcheck="false"
+								></textarea>
+								<div class="invalid-feedback">
+									상대의 Offer를 입력해 줘
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- ICE 후보 공통 -->
+
+					<details
+						class="d-flex flex-column mt-4"
+						id="iceSettings"
+						open
+					>
+						<summary>ICE 설정</summary>
+						<div class="col">
+							<div
+								class="d-flex justify-content-between align-items-center mb-1"
+							>
+								<label class="form-label" for="localIce"
+									>📤 내 ICE 후보</label
+								>
+								<button
+									class="btn btn-secondary mt-2"
+									id="reflashICE"
+								>
+									ICE 목록 생성
+								</button>
+							</div>
+							<textarea
+								id="localIce"
+								class="form-control has-validation"
+								rows="5"
+								spellcheck="false"
+								readonly
+							></textarea>
+							<div class="invalid-feedback">
+								우선 Offer 또는 Answer 정보를 생성해줘
+							</div>
+						</div>
+						<div class="col">
+							<div
+								class="d-flex justify-content-between align-items-center mb-1"
+							>
+								<label class="form-label" for="remoteIce"
+									>📥 상대 ICE 후보 입력</label
+								>
+								<button
+									class="btn btn-secondary mt-2"
+									id="addRemoteIce"
+								>
+									상대 ICE 후보 적용
+								</button>
+							</div>
+
+							<textarea
+								id="remoteIce"
+								class="form-control has-validation"
+								rows="5"
+								spellcheck="false"
+							></textarea>
+							<div class="invalid-feedback">
+								상대의 ICE 후보를 입력해 줘
+							</div>
+						</div>
+					</details>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button
+					type="button"
+					class="btn btn-secondary"
+					data-bs-dismiss="modal"
+					onclick="this.blur();"
+				>
+					Close
+				</button>
+			</div>
+		</div>
+	</div>
+</section>

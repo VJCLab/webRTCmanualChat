@@ -1,0 +1,51 @@
+.chat-section .form-control {
+	border-color: transparent;
+}
+
+.chat-section .form-control:focus {
+	border-color: transparent;
+	box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.chat-section .date-divider:after,
+.chat-section .date-divider:before {
+	content: "";
+	flex: 1;
+	height: 1px;
+	background: #eee;
+}
+.chat-avatar {
+	width: 45px;
+	height: 45px;
+}
+.chat-senderOptions textarea {
+	resize: none;
+}
+.chat-senderOptions:has(textarea:focus) {
+	border-color: transparent;
+	box-shadow: inset 0px 0px 0px 1px transparent;
+	flex: 1;
+	background-color: transparent;
+}
+.chat-senderOptions:has(textarea:focus) > .input-group {
+	height: 100%;
+}
+.chat-senderOptions:has(textarea:focus) textarea {
+	height: 100%;
+}
+
+.chat-delete-btn {
+	position: absolute;
+	bottom: -10px;
+	right: -10px;
+	width: 24px;
+	height: 24px;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	color: white;
+	font-weight: bold;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	z-index: 10;
+}
